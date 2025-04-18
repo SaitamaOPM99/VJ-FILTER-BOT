@@ -141,6 +141,14 @@ BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", f"{script.IMDB_TEMPLATE_TXT}")
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 
+# Web Server Configuration (for Koyeb)
+PORT = int(os.environ.get("PORT", 8080))  # Koyeb sets this automatically
+DOMAIN = os.environ.get("DOMAIN", "https://your-app.koyeb.app")
+PING_INTERVAL = int(os.environ.get("PING_INTERVAL", 30))  # In seconds
+ENABLE_SELF_PING = os.environ.get("ENABLE_SELF_PING", "True").lower() in ("true", "1", "yes")
+
+# Health Check Paths (responds with 200 OK)
+HEALTH_PATHS = ["/health", "/_health", "/healthz"]
 
 # Choose Option Settings 
 LANGUAGES = ["malayalam", "mal", "tamil", "tam" ,"english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
@@ -156,7 +164,7 @@ YEARS = ["1900", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998",
 
 
 # Online Stream and Download
-STREAM_MODE = bool(environ.get('STREAM_MODE', True)) # Set True or False
+STREAM_MODE = bool(environ.get('STREAM_MODE', False)) # Set True or False
 
 # If Stream Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
 MULTI_CLIENT = False
